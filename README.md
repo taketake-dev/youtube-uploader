@@ -1,6 +1,6 @@
 # youtube-uploader
 
-現行バージョン: **v5.0.1**
+現行バージョン: **v5.0.2**
 
 **現在 PyPI には上げていません**
 
@@ -59,6 +59,45 @@ poetry add youtube-uploader
 
 ---
 
+## 🖥️ CLI での実行
+
+Poetry でインストールした後、以下の CLI で直接操作できます。
+
+```bash
+# 初回認証
+poetry run youtube-auth-init --auth-dir /path/to/auth_dir
+
+# 動画アップロード
+poetry run youtube-uploader upload \
+  --auth-dir /path/to/auth_dir \
+  --video-file /path/to/video.mp4 \
+  --title "テスト動画" \
+  --description "親プロジェクト生成動画のアップロード" \
+  --tags "Python,自動化" \
+  --privacy-status private \
+  --show-progress
+```
+
+### CLI 引数一覧
+
+| 引数                  | コマンド              | 説明                                                                                          | 例                                       |
+| --------------------- | --------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| `--auth-dir`, `-a`    | `auth-init`, `upload` | `client_secret.json` と `token.json` を置いたディレクトリ。デフォルトはカレントディレクトリ。 | `--auth-dir /path/to/auth_dir`           |
+| `upload`              | `youtube-uploader`    | 動画アップロードを実行するサブコマンド。                                                      | `youtube-uploader upload ...`            |
+| `--video-file`, `-v`  | `upload`              | アップロードする動画ファイルのパス。                                                          | `--video-file ./video.mp4`               |
+| `--title`, `-t`       | `upload`              | 動画のタイトル。                                                                              | `--title "テスト動画"`                   |
+| `--description`, `-d` | `upload`              | 動画の説明文。                                                                                | `--description "説明文"`                 |
+| `--tags`              | `upload`              | カンマ区切りのタグ一覧。                                                                      | `--tags "Python,自動化"`                 |
+| `--category-id`       | `upload`              | YouTube のカテゴリ ID。デフォルトは `24`（エンターテイメント）。                              | `--category-id 24`                       |
+| `--privacy-status`    | `upload`              | 公開設定。`public`, `private`, `unlisted` から選択。                                          | `--privacy-status private`               |
+| `--made-for-kids`     | `upload`              | 子供向けコンテンツとしてマークするフラグ。                                                    | `--made-for-kids`                        |
+| `--publish-at`        | `upload`              | 予約投稿日時。ISO 8601形式で指定。                                                            | `--publish-at 2026-10-20T02:30:00+09:00` |
+| `--thumbnail-file`    | `upload`              | サムネイル画像ファイルのパス。                                                                | `--thumbnail-file ./thumb.jpg`           |
+| `--show-progress`     | `upload`              | アップロード進捗を表示する。                                                                  | `--show-progress`                        |
+| `--chunksize`         | `upload`              | アップロードのチャンクサイズ（バイト）。デフォルトは `-1`。                                   | `--chunksize 10485760`                   |
+
+---
+
 ## 🔑 認証と準備
 
 本パッケージは OAuth 2.0 を使用します。初回接続時にブラウザ経由で認証が必要です。
@@ -95,7 +134,7 @@ poetry add youtube-uploader
 このスクリプトは、パッケージの主要な機能（認証、アップロード）をデモンストレーションします。
 
 【実行に必要な準備】
-client_secrets.json:
+client_secret.json:
     Google API Consoleからダウンロードした認証情報ファイルを、
     任意のディレクトリに配置してください。
 動画ファイル:
