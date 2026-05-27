@@ -1,6 +1,6 @@
 # youtube-uploader
 
-現行バージョン: **v5.0.1**
+現行バージョン: **v5.0.2**
 
 **現在 PyPI には上げていません**
 
@@ -59,6 +59,27 @@ poetry add youtube-uploader
 
 ---
 
+## 🖥️ CLI での実行
+
+Poetry でインストールした後、以下の CLI で直接操作できます。
+
+```bash
+# 初回認証
+poetry run youtube-auth-init --auth-dir /path/to/auth_dir
+
+# 動画アップロード
+poetry run youtube-uploader upload \
+  --auth-dir /path/to/auth_dir \
+  --video-file /path/to/video.mp4 \
+  --title "テスト動画" \
+  --description "親プロジェクト生成動画のアップロード" \
+  --tags "Python,自動化" \
+  --privacy-status private \
+  --show-progress
+```
+
+---
+
 ## 🔑 認証と準備
 
 本パッケージは OAuth 2.0 を使用します。初回接続時にブラウザ経由で認証が必要です。
@@ -95,7 +116,7 @@ poetry add youtube-uploader
 このスクリプトは、パッケージの主要な機能（認証、アップロード）をデモンストレーションします。
 
 【実行に必要な準備】
-client_secrets.json:
+client_secret.json:
     Google API Consoleからダウンロードした認証情報ファイルを、
     任意のディレクトリに配置してください。
 動画ファイル:
