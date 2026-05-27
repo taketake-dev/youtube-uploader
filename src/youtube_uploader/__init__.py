@@ -10,7 +10,7 @@ from .exceptions import AuthError, UploadError, YoutubeUploaderError
 from .models import YoutubeConfig
 from .youtube import YoutubeUploader
 
-__version__ = "5.0.2"
+__version__ = "5.0.3"
 
 __all__ = [
     "YoutubeUploader",

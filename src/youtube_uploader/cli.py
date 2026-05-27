@@ -47,7 +47,7 @@ def _build_parser() -> argparse.ArgumentParser:
         "-a",
         type=Path,
         default=Path.cwd(),
-        help="client_secret.json と token.json を置いたディレクトリ。デフォルトはカレントディレクトリ。",
+        help="client_secret*.json と token.json を置いたディレクトリ。デフォルトはカレントディレクトリ。",
     )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -144,7 +144,7 @@ def init_auth_setup() -> None:
         "-a",
         type=Path,
         default=Path.cwd(),
-        help="client_secret.json と token.json を置いたディレクトリ。デフォルトはカレントディレクトリ。",
+        help="client_secret*.json と token.json を置いたディレクトリ。デフォルトはカレントディレクトリ。",
     )
     args = parser.parse_args()
 

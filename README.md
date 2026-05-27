@@ -1,6 +1,6 @@
 # youtube-uploader
 
-現行バージョン: **v5.0.2**
+現行バージョン: **v5.0.3**
 
 **現在 PyPI には上げていません**
 
@@ -82,7 +82,7 @@ poetry run youtube-uploader upload \
 
 | 引数                  | コマンド              | 説明                                                                                          | 例                                       |
 | --------------------- | --------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| `--auth-dir`, `-a`    | `auth-init`, `upload` | `client_secret.json` と `token.json` を置いたディレクトリ。デフォルトはカレントディレクトリ。 | `--auth-dir /path/to/auth_dir`           |
+| `--auth-dir`, `-a`    | `auth-init`, `upload` | `client_secret*.json` と `token.json` を置いたディレクトリ。デフォルトはカレントディレクトリ。 | `--auth-dir /path/to/auth_dir`           |
 | `upload`              | `youtube-uploader`    | 動画アップロードを実行するサブコマンド。                                                      | `youtube-uploader upload ...`            |
 | `--video-file`, `-v`  | `upload`              | アップロードする動画ファイルのパス。                                                          | `--video-file ./video.mp4`               |
 | `--title`, `-t`       | `upload`              | 動画のタイトル。                                                                              | `--title "テスト動画"`                   |
@@ -110,17 +110,17 @@ poetry run youtube-uploader upload \
 
 3. アプリケーションの情報を入力
 
-4. OAuth 2.0 クライアント ID（**デスクトップ アプリケーション**）を作成し、`client_secrets.json` ファイルをダウンロードします。
+4. OAuth 2.0 クライアント ID（**デスクトップ アプリケーション**）を作成し、Google が発行する `client_secret_...apps.googleusercontent.com.json` 形式のファイルをダウンロードします。
 
 5. テストユーザーに使用するアカウントのメールアドレスを入れてください。
 
-6. ファイル名を `client_secret.json` に変更してください。
+6. ファイル名の変更は不要です。`client_secret*.json` をそのまま `--auth-dir` に置くだけで動作します。
 
 ### ステップ 2: 初回認証の実行
 
 コード内で`connect`メソッドを初めて実行すると、自動的にブラウザが開いて Google アカウントの認証を求められます。
 
-認証が完了すると、`token.json`が`client_secret.json`と同じ場所に安全に保存され、次回以降の API 接続は自動化されます。
+認証が完了すると、`token.json`が`client_secret*.json`と同じ場所に安全に保存され、次回以降の API 接続は自動化されます。
 
 ---
 
@@ -134,7 +134,7 @@ poetry run youtube-uploader upload \
 このスクリプトは、パッケージの主要な機能（認証、アップロード）をデモンストレーションします。
 
 【実行に必要な準備】
-client_secret.json:
+client_secret*.json:
     Google API Consoleからダウンロードした認証情報ファイルを、
     任意のディレクトリに配置してください。
 動画ファイル:

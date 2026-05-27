@@ -58,7 +58,7 @@ class YoutubeUploader:
         """指定されたディレクトリに基づきYouTube APIへの認証を行う。
 
         Args:
-            auth_path (Path): 利用する client_secret.jsonが入っているディレクトリのパス
+            auth_path (Path): `client_secret*.json` を置いたディレクトリのパス
 
         Examples:
             uploader = YoutubeUploader(Path("~/secrets/my_account"))
