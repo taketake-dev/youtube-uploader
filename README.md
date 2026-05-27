@@ -78,23 +78,43 @@ poetry run youtube-uploader upload \
   --show-progress
 ```
 
+## 🧩 Python から簡単に使う
+
+`upload_video_from_file` を使えば、ファイル読み込み、認証、設定、アップロードを一度に実行できます。
+
+```py
+from pathlib import Path
+from youtube_uploader import upload_video_from_file
+
+response = upload_video_from_file(
+    auth_dir=Path("/path/to/auth_dir"),
+    video_file=Path("./video.mp4"),
+    title="テスト動画",
+    description="Python からの簡易アップロード",
+    tags="Python,自動化",
+    privacy_status="private",
+    show_progress=True,
+)
+print(response)
+```
+
 ### CLI 引数一覧
 
-| 引数                  | コマンド              | 説明                                                                                          | 例                                       |
-| --------------------- | --------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| 引数                  | コマンド              | 説明                                                                                           | 例                                       |
+| --------------------- | --------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | `--auth-dir`, `-a`    | `auth-init`, `upload` | `client_secret*.json` と `token.json` を置いたディレクトリ。デフォルトはカレントディレクトリ。 | `--auth-dir /path/to/auth_dir`           |
-| `upload`              | `youtube-uploader`    | 動画アップロードを実行するサブコマンド。                                                      | `youtube-uploader upload ...`            |
-| `--video-file`, `-v`  | `upload`              | アップロードする動画ファイルのパス。                                                          | `--video-file ./video.mp4`               |
-| `--title`, `-t`       | `upload`              | 動画のタイトル。                                                                              | `--title "テスト動画"`                   |
-| `--description`, `-d` | `upload`              | 動画の説明文。                                                                                | `--description "説明文"`                 |
-| `--tags`              | `upload`              | カンマ区切りのタグ一覧。                                                                      | `--tags "Python,自動化"`                 |
-| `--category-id`       | `upload`              | YouTube のカテゴリ ID。デフォルトは `24`（エンターテイメント）。                              | `--category-id 24`                       |
-| `--privacy-status`    | `upload`              | 公開設定。`public`, `private`, `unlisted` から選択。                                          | `--privacy-status private`               |
-| `--made-for-kids`     | `upload`              | 子供向けコンテンツとしてマークするフラグ。                                                    | `--made-for-kids`                        |
-| `--publish-at`        | `upload`              | 予約投稿日時。ISO 8601形式で指定。                                                            | `--publish-at 2026-10-20T02:30:00+09:00` |
-| `--thumbnail-file`    | `upload`              | サムネイル画像ファイルのパス。                                                                | `--thumbnail-file ./thumb.jpg`           |
-| `--show-progress`     | `upload`              | アップロード進捗を表示する。                                                                  | `--show-progress`                        |
-| `--chunksize`         | `upload`              | アップロードのチャンクサイズ（バイト）。デフォルトは `-1`。                                   | `--chunksize 10485760`                   |
+| `upload`              | `youtube-uploader`    | 動画アップロードを実行するサブコマンド。                                                       | `youtube-uploader upload ...`            |
+| `--video-file`, `-v`  | `upload`              | アップロードする動画ファイルのパス。                                                           | `--video-file ./video.mp4`               |
+| `--title`, `-t`       | `upload`              | 動画のタイトル。                                                                               | `--title "テスト動画"`                   |
+| `--description`, `-d` | `upload`              | 動画の説明文。                                                                                 | `--description "説明文"`                 |
+| `--tags`              | `upload`              | カンマ区切りのタグ一覧。                                                                       | `--tags "Python,自動化"`                 |
+| `--category-id`       | `upload`              | YouTube のカテゴリ ID。デフォルトは `24`（エンターテイメント）。                               | `--category-id 24`                       |
+| `--privacy-status`    | `upload`              | 公開設定。`public`, `private`, `unlisted` から選択。                                           | `--privacy-status private`               |
+| `--made-for-kids`     | `upload`              | 子供向けコンテンツとしてマークするフラグ。                                                     | `--made-for-kids`                        |
+| `--publish-at`        | `upload`              | 予約投稿日時。ISO 8601形式で指定。                                                             | `--publish-at 2026-10-20T02:30:00+09:00` |
+| `--thumbnail-file`    | `upload`              | サムネイル画像ファイルのパス。                                                                 | `--thumbnail-file ./thumb.jpg`           |
+| `--show-progress`     | `upload`              | アップロード進捗を表示する。                                                                   | `--show-progress`                        |
+| `--chunksize`         | `upload`              | アップロードのチャンクサイズ（バイト）。デフォルトは `-1`。                                    | `--chunksize 10485760`                   |
 
 ---
 

@@ -7,6 +7,7 @@
 """
 
 from .exceptions import AuthError, UploadError, YoutubeUploaderError
+from .helpers import upload_video_from_file
 from .models import YoutubeConfig
 from .youtube import YoutubeUploader
 
@@ -18,4 +19,5 @@ __all__ = [
     "AuthError",
     "UploadError",
     "YoutubeUploaderError",
+    "upload_video_from_file",
 ]
