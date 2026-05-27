@@ -11,7 +11,7 @@ from .helpers import upload_video_from_file
 from .models import YoutubeConfig
 from .youtube import YoutubeUploader
 
-__version__ = "5.0.3"
+__version__ = "5.0.4"
 
 __all__ = [
     "YoutubeUploader",
